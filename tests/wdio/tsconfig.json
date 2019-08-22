@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "types": ["jasmine", "node", "webdriverio"]
+  },
+  "extends": "../../tsconfig.base.json"
+}

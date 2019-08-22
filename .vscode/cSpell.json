@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "applitools",
+    "browserstack",
+    "bugreport",
+    "chrome",
+    "chromedriver",
+    "firestore",
+    "goog",
+    "goog:chromeOptions",
+    "options",
+    "prefs",
+    "specfile",
+    "sumologic",
+    "timeout",
+    "waitfor",
+    "wdio",
+    "webdriverio",
+    "xdescribe"
+  ]
+}

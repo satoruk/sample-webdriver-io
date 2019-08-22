@@ -1,0 +1,4 @@
+.envrc
+/.docker-sync/
+/dest
+node_modules

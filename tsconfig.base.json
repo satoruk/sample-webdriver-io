@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "incremental": true,
+    "module": "commonjs",
+    "strict": true,
+    "target": "ES2019"
+  },
+  "include": ["**/*.ts"]
+}

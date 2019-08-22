@@ -1,0 +1,58 @@
+version: 2.1
+executors:
+  default:
+    working_directory: ~/workspace
+    docker:
+      - image: satoruk/node:10.16.3-buster-allure
+commands:
+  restore_node_modules:
+    steps:
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - v{{ .Environment.CACHE_VERSION }}-yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v{{ .Environment.CACHE_VERSION }}-yarn-packages-master
+      - restore_cache:
+          name: Restore node_modules dependencies
+          keys:
+            - v{{ .Environment.CACHE_VERSION }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  store_node_modules:
+    steps:
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: v{{ .Environment.CACHE_VERSION }}-yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          name: Save node_modules dependencies
+          key: v{{ .Environment.CACHE_VERSION }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+jobs:
+  test:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - restore_node_modules
+      - run: yarn install --frozen-lockfile
+      - run: yarn "test:wdio:report"
+      - store_node_modules
+      - store_artifacts:
+          path: ./dest
+          destination: dest
+workflows:
+  build:
+    jobs:
+      - test
+  nightly:
+    triggers:
+      - schedule:
+          # every sunday
+          cron: "0 0 * * 0"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test

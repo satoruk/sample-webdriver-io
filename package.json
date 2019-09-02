@@ -7,6 +7,8 @@
   "devDependencies": {
     "@types/jasmine": "3.4.0",
     "@types/jest": "24.0.18",
+    "@types/lodash": "4.14.138",
+    "@types/node": "12.7.3",
     "@types/selenium-standalone": "6.15.0",
     "@typescript-eslint/eslint-plugin": "2.0.0",
     "@typescript-eslint/parser": "2.0.0",
@@ -54,10 +56,12 @@
   },
   "jest": {
     "clearMocks": true,
+    "globalSetup": "<rootDir>/tests/jest/e2e/support/setup.ts",
+    "globalTeardown": "<rootDir>/tests/jest/e2e/support/teardown.ts",
     "preset": "ts-jest",
     "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/test/jest/**/*.test.ts"
+      "<rootDir>/tests/jest/**/*.test.ts"
     ]
   },
   "xo": {

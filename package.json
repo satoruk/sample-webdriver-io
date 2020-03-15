@@ -15,7 +15,7 @@
     "@wdio/local-runner": "5.12.5",
     "@wdio/selenium-standalone-service": "5.12.1",
     "@wdio/spec-reporter": "5.12.1",
-    "acorn": "7.0.0",
+    "acorn": "7.1.1",
     "chromedriver": "76.0.1",
     "eslint": "6.3.0",
     "eslint-config-xo": "0.26.0",
